@@ -1,4 +1,28 @@
 import streamlit as st
+import base64
+import time
+# ... cualquier otro import que tengas
+
+# --- AQUÍ VA EL MOTOR DE AUDIO (Paso 2) ---
+def play_sound(file_path):
+    try:
+        with open(file_path, "rb") as f:
+            data = f.read()
+            b64 = base64.b64encode(data).decode()
+            md = f"""
+                <audio autoplay="true">
+                <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
+                </audio>
+                """
+            st.markdown(md, unsafe_allow_html=True)
+    except FileNotFoundError:
+        # Si el archivo no existe, no hace nada (evita que la app pete)
+        pass
+
+# --- DESPUÉS VIENE EL RESTO DE TU CÓDIGO ---
+st.set_page_config(page_title="BEAUCHEF RPG", layout="wide")
+
+# ... (Tu CSS RGB, tus pestañas, etc.)
 
 # 1. CONFIGURACIÓN DE PÁGINA (Estética Dark Mode)
 st.set_page_config(
