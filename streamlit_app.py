@@ -26,8 +26,7 @@ col_av, col_stats = st.columns([1, 3])
 
 with col_av:
     # Imagen temporal (puedes subir la que te generé a GitHub y usar su link)
-    st.image("https://img.freepik.com/premium-photo/cyberpunk-gamer-boy-avatar-neon-style_941600-1111.jpg", 
-             caption="Clase: Ingeniero Matemático", width=200)
+   st.image("avatar.png", caption="Clase: Ingeniero Matemático", width=200)
     st.progress(15, text="XP para Nivel 2 (Mechón)")
 
 with col_stats:
