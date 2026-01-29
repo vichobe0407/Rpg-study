@@ -102,30 +102,62 @@ with tab1:
     # ... (el resto de tu código actual)
 
 with tab2:
-    # ... (código del reloj que ya tienes)
+    st.header("⏳ RELOJ DE CONCENTRACIÓN")
+    
+    # 1. Interfaz Visual
+    color_modo = "#ff4b4b" if st.session_state.modo == "Estudio" else "#00ffcc"
+    st.markdown(f"<h2 style='text-align: center; color: {color_modo};'>{st.session_state.modo.upper()}</h2>", unsafe_allow_html=True)
 
+    mins, secs = divmod(st.session_state.tiempo_restante, 60)
+    st.markdown(f"<h1 style='text-align: center; font-size: 80px;'>{mins:02d}:{secs:02d}</h1>", unsafe_allow_html=True)
+
+    # 2. Botones con Audio Integrado
     col1, col2, col3 = st.columns(3)
     
     with col1:
         if st.button("▶️ INICIAR"):
-            play_sound("click.mp3") # <--- SONIDO DE CLICK
             st.session_state.corriendo = True
-            st.rerun()
+            play_sound("click.mp3") 
+            st.rerun() # Forzamos el inicio del bucle
 
     with col2:
         if st.button("⏸️ PAUSAR"):
-            play_sound("click.mp3") # <--- SONIDO DE CLICK
             st.session_state.corriendo = False
-            st.rerun()
+            play_sound("click.mp3")
+            # No usamos rerun aquí para que el audio se procese bien
 
     with col3:
         if st.button("🔄 RESET"):
-            play_sound("click.mp3") # <--- SONIDO DE CLICK
             st.session_state.corriendo = False
             st.session_state.modo = "Estudio"
             st.session_state.tiempo_restante = 45 * 60
+            play_sound("click.mp3")
             st.rerun()
 
+    # 3. MOTOR DEL RELOJ (Mejorado)
+    if st.session_state.corriendo and st.session_state.tiempo_restante > 0:
+        time.sleep(1)
+        st.session_state.tiempo_restante -= 1
+        
+        # Alerta 5 min (300 seg)
+        if st.session_state.tiempo_restante == 300:
+            play_sound("warning.mp3")
+            
+        st.rerun()
+
+    # 4. Lógica de cambio de ciclo
+    if st.session_state.tiempo_restante <= 0:
+        st.session_state.corriendo = False
+        if st.session_state.modo == "Estudio":
+            play_sound("success.mp3")
+            st.session_state.modo = "Descanso"
+            st.session_state.tiempo_restante = 15 * 60
+        else:
+            play_sound("warning.mp3")
+            st.session_state.modo = "Estudio"
+            st.session_state.tiempo_restante = 45 * 60
+        st.rerun()
+        
 # --- MISIONES (QUESTS) ---
 st.subheader("⚔️ Misiones Diarias (Quests)")
 
