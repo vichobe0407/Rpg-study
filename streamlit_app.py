@@ -103,6 +103,13 @@ with tab1:
     st.subheader("⚔️ Estado del Jugador")
     # ... (el resto de tu código actual)
 
+
+if st.button("🏁 FINALIZAR JORNADA Y RECLAMAR XP"):
+        play_sound("level_up.mp3") # El sonido más épico que produzcas
+        st.balloons()
+        st.success("¡Jornada completada! Has ganado XP de Ingeniería.")
+
+        
 with tab2:
     st.header("⏳ RELOJ DE CONCENTRACIÓN")
     
