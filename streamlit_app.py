@@ -10,10 +10,33 @@ st.set_page_config(
 # Estilo personalizado con CSS para neones
 st.markdown("""
     <style>
-    .main { background-color: #0e1117; }
-    .stMetric { background-color: #1a1c24; padding: 15px; border-radius: 10px; border: 1px solid #4d4d4d; }
+    /* Fondo general */
+    .main { background-color: #0b0d11; }
+    
+    /* Estilo para las tarjetas de métricas */
+    [data-testid="stMetric"] {
+        background-color: #161b22;
+        border: 2px solid #ff4b4b; /* Rojo neón, puedes cambiar a #00ffcc para cian */
+        border-radius: 15px;
+        padding: 15px;
+        box-shadow: 0px 0px 15px rgba(255, 75, 75, 0.3);
+    }
+    
+    /* Títulos y textos */
+    h1, h2, h3 { color: #00ffcc !important; font-family: 'Courier New', monospace; }
+    
+    /* El botón de reclamar XP */
+    .stButton>button {
+        background-image: linear-gradient(to right, #ff4b4b, #ff00ff);
+        color: white;
+        border-radius: 20px;
+        border: none;
+        font-weight: bold;
+        width: 100%;
+    }
     </style>
     """, unsafe_allow_html=True)
+
 
 # --- ENCABEZADO ---
 st.title("🌌 BEAUCHEF RPG: SURVIVAL MODE")
