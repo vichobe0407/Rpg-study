@@ -102,27 +102,29 @@ with tab1:
     # ... (el resto de tu código actual)
 
 with tab2:
-    st.subheader("🍅 Temporizador de Concentración")
-    
-    col_t1, col_t2 = st.columns(2)
-    with col_t1:
-        tiempo_base = st.number_input("Minutos de estudio:", value=25)
-    with col_t2:
-        st.write("Estado: **En Pausa**")
+    # ... (código del reloj que ya tienes)
 
-    # Lógica simple de cronómetro (Streamlit refresca la página, 
-    # por lo que para un cronómetro pro necesitaríamos 'session_state')
-    if st.button("🚀 INICIAR SESIÓN"):
-        with st.empty():
-            import time
-            secs = tiempo_base * 60
-            while secs > 0:
-                mm, ss = divmod(secs, 60)
-                st.metric("Tiempo Restante", f"{mm:02d}:{ss:02d}")
-                time.sleep(1)
-                secs -= 1
-            st.success("¡Sesión completada! Ganas +10 XP de INT")
-            st.balloons()
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        if st.button("▶️ INICIAR"):
+            play_sound("click.mp3") # <--- SONIDO DE CLICK
+            st.session_state.corriendo = True
+            st.rerun()
+
+    with col2:
+        if st.button("⏸️ PAUSAR"):
+            play_sound("click.mp3") # <--- SONIDO DE CLICK
+            st.session_state.corriendo = False
+            st.rerun()
+
+    with col3:
+        if st.button("🔄 RESET"):
+            play_sound("click.mp3") # <--- SONIDO DE CLICK
+            st.session_state.corriendo = False
+            st.session_state.modo = "Estudio"
+            st.session_state.tiempo_restante = 45 * 60
+            st.rerun()
 
 # --- MISIONES (QUESTS) ---
 st.subheader("⚔️ Misiones Diarias (Quests)")
