@@ -10,65 +10,40 @@ st.set_page_config(
 # Estilo personalizado con CSS para neones
 st.markdown("""
     <style>
-    /* Importar una fuente tipo Pixel/Minecraft desde Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    /* 1. Cambiamos a una fuente más elegante: Orbitron */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-    /* Aplicar fuente Minecraft a toda la app */
     * {
-        font-family: 'Press+Start+2P', cursive !important;
-        font-size: 12px; /* Las fuentes pixeladas se ven mejor pequeñas */
+        font-family: 'Orbitron', sans-serif !important;
         color: #00FFCC;
     }
 
-    /* Fondo general oscuro profundo */
-    .main {
-        background-color: #050505;
+    .main { background-color: #050505; }
+
+    /* 2. Animación RGB Mejorada (Borde + Sombra) */
+    @keyframes rgb-full {
+        0%   { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+        33%  { border-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
+        66%  { border-color: #0000ff; box-shadow: 0 0 15px #0000ff; }
+        100% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
     }
 
-    /* Animación RGB para los bordes */
-    @keyframes rgb-border {
-        0% { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
-        33% { border-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
-        66% { border-color: #0000ff; box-shadow: 0 0 10px #0000ff; }
-        100% { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
-    }
-
-    /* Estilo de los recuadros de Atributos (Métricas) */
     [data-testid="stMetric"] {
         background-color: #111111 !important;
-        border: 3px solid #ff0000 !important;
-        border-radius: 10px !important;
+        border-radius: 15px !important;
         padding: 20px !important;
-        animation: rgb-border 3s linear infinite; /* Aquí ocurre la magia RGB */
+        /* Quitamos el color fijo y dejamos que la animación mande */
+        border: 2px solid transparent !important; 
+        animation: rgb-full 4s linear infinite !important;
     }
 
-    /* Personalización de los Checkboxes (Misiones) */
-    .stCheckbox {
-        background-color: #1a1a1a;
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 5px;
-        border-left: 5px solid #00FFCC;
-    }
-
-    /* Botón Reclamar XP estilo Arcade */
-    .stButton>button {
-        background-color: #ff00ff !important;
-        color: white !important;
-        border: 4px solid #ffffff !important;
-        font-family: 'Press Start 2P', cursive !important;
-        height: 50px;
-        width: 100%;
-        transition: 0.3s;
-    }
-
-    .stButton>button:hover {
-        background-color: #00ffff !important;
-        transform: scale(1.05);
+    /* Estilo para los títulos de los atributos */
+    [data-testid="stMetricLabel"] {
+        font-size: 14px !important;
+        letter-spacing: 2px;
     }
     </style>
     """, unsafe_allow_html=True)
-
 
 
 # --- ENCABEZADO ---
