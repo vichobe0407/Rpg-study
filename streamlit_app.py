@@ -69,6 +69,36 @@ with col_stats:
     c4.metric("CON (Hogar)", "40", "+1")
 
 st.divider()
+# --- SISTEMA DE PESTAÑAS ---
+tab1, tab2 = st.tabs(["🎮 Dashboard Principal", "⏳ Módulo Pomodoro"])
+
+with tab1:
+    # Mueve aquí todo el código de tus Quests y Stats
+    st.subheader("⚔️ Estado del Jugador")
+    # ... (el resto de tu código actual)
+
+with tab2:
+    st.subheader("🍅 Temporizador de Concentración")
+    
+    col_t1, col_t2 = st.columns(2)
+    with col_t1:
+        tiempo_base = st.number_input("Minutos de estudio:", value=25)
+    with col_t2:
+        st.write("Estado: **En Pausa**")
+
+    # Lógica simple de cronómetro (Streamlit refresca la página, 
+    # por lo que para un cronómetro pro necesitaríamos 'session_state')
+    if st.button("🚀 INICIAR SESIÓN"):
+        with st.empty():
+            import time
+            secs = tiempo_base * 60
+            while secs > 0:
+                mm, ss = divmod(secs, 60)
+                st.metric("Tiempo Restante", f"{mm:02d}:{ss:02d}")
+                time.sleep(1)
+                secs -= 1
+            st.success("¡Sesión completada! Ganas +10 XP de INT")
+            st.balloons()
 
 # --- MISIONES (QUESTS) ---
 st.subheader("⚔️ Misiones Diarias (Quests)")
