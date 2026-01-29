@@ -139,12 +139,14 @@ with tab2:
     if st.session_state.corriendo and st.session_state.tiempo_restante > 0:
         time.sleep(1)  # Asegúrate de que tenga exactamente 8 espacios (o 2 tabs) de sangría
         st.session_state.tiempo_restante -= 1
+
         
         # Alerta 5 min (300 seg)
         if st.session_state.tiempo_restante == 300:
             play_sound("warning.mp3")
             
         st.rerun()
+        
 
     # 4. Lógica de cambio de ciclo
     if st.session_state.tiempo_restante <= 0:
