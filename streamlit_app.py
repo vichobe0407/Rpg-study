@@ -1,6 +1,7 @@
 import streamlit as st
-import random # Asegúrate de tener este import arriba
-
+import base64
+import time    # <--- ESTA ES LA LÍNEA QUE FALTA
+import random
 def play_sound(file_path):
     try:
         with open(file_path, "rb") as f:
