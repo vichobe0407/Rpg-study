@@ -99,16 +99,10 @@ st.divider()
 tab1, tab2 = st.tabs(["🎮 Dashboard Principal", "⏳ Módulo Pomodoro"])
 
 with tab1:
-    # Mueve aquí todo el código de tus Quests y Stats
-    st.subheader("⚔️ Estado del Jugador")
-    # ... (el resto de tu código actual)
-
-
-if st.button("🏁 FINALIZAR JORNADA Y RECLAMAR XP"):
-        play_sound("level_up.mp3") # El sonido más épico que produzcas
-        st.balloons()
-        st.success("¡Jornada completada! Has ganado XP de Ingeniería.")
-
+  if st.button("🏁 FINALIZAR JORNADA Y RECLAMAR XP", key="btn_finalizar_unico"):
+    play_sound("level_up.mp3")
+    st.balloons()
+    st.success("¡Misiones completadas!")
         
 with tab2:
     st.header("⏳ RELOJ DE CONCENTRACIÓN")
