@@ -10,32 +10,65 @@ st.set_page_config(
 # Estilo personalizado con CSS para neones
 st.markdown("""
     <style>
-    /* Fondo general */
-    .main { background-color: #0b0d11; }
-    
-    /* Estilo para las tarjetas de métricas */
-    [data-testid="stMetric"] {
-        background-color: #161b22;
-        border: 2px solid #ff4b4b; /* Rojo neón, puedes cambiar a #00ffcc para cian */
-        border-radius: 15px;
-        padding: 15px;
-        box-shadow: 0px 0px 15px rgba(255, 75, 75, 0.3);
+    /* Importar una fuente tipo Pixel/Minecraft desde Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    /* Aplicar fuente Minecraft a toda la app */
+    * {
+        font-family: 'Press+Start+2P', cursive !important;
+        font-size: 12px; /* Las fuentes pixeladas se ven mejor pequeñas */
+        color: #00FFCC;
     }
-    
-    /* Títulos y textos */
-    h1, h2, h3 { color: #00ffcc !important; font-family: 'Courier New', monospace; }
-    
-    /* El botón de reclamar XP */
+
+    /* Fondo general oscuro profundo */
+    .main {
+        background-color: #050505;
+    }
+
+    /* Animación RGB para los bordes */
+    @keyframes rgb-border {
+        0% { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
+        33% { border-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
+        66% { border-color: #0000ff; box-shadow: 0 0 10px #0000ff; }
+        100% { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
+    }
+
+    /* Estilo de los recuadros de Atributos (Métricas) */
+    [data-testid="stMetric"] {
+        background-color: #111111 !important;
+        border: 3px solid #ff0000 !important;
+        border-radius: 10px !important;
+        padding: 20px !important;
+        animation: rgb-border 3s linear infinite; /* Aquí ocurre la magia RGB */
+    }
+
+    /* Personalización de los Checkboxes (Misiones) */
+    .stCheckbox {
+        background-color: #1a1a1a;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        border-left: 5px solid #00FFCC;
+    }
+
+    /* Botón Reclamar XP estilo Arcade */
     .stButton>button {
-        background-image: linear-gradient(to right, #ff4b4b, #ff00ff);
-        color: white;
-        border-radius: 20px;
-        border: none;
-        font-weight: bold;
+        background-color: #ff00ff !important;
+        color: white !important;
+        border: 4px solid #ffffff !important;
+        font-family: 'Press Start 2P', cursive !important;
+        height: 50px;
         width: 100%;
+        transition: 0.3s;
+    }
+
+    .stButton>button:hover {
+        background-color: #00ffff !important;
+        transform: scale(1.05);
     }
     </style>
     """, unsafe_allow_html=True)
+
 
 
 # --- ENCABEZADO ---
