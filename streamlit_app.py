@@ -137,7 +137,7 @@ with tab2:
 
     # 3. MOTOR DEL RELOJ (Mejorado)
     if st.session_state.corriendo and st.session_state.tiempo_restante > 0:
-        time.sleep(1)
+        time.sleep(1)  # Asegúrate de que tenga exactamente 8 espacios (o 2 tabs) de sangría
         st.session_state.tiempo_restante -= 1
         
         # Alerta 5 min (300 seg)
